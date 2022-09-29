@@ -1,7 +1,9 @@
 ## Before this you need td follow below steps as well -
-#1. Create Nat GW with EIP from public subnet
-#2. Add a route to the NAT GWs from route table associated with private subnet
-#3. Update egress rule on centos security group to reach to port 80 and 443 to internet for downloading and installing packages etc.
+1. Create Nat GW with EIP from public subnet
+2. Add a route to the NAT GWs from route table associated with private subnet
+3. Update egress rule on centos security group to reach to port 80 and 443 to internet for downloading and installing packages etc.
+
+
 
 #! /bin/bash
 sudo yum update
