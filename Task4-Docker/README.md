@@ -30,3 +30,6 @@ Removing task4_app-db_1        ... done
 Removing task4_nginx-service_1 ... done
 Removing network task4_default
 vkb@DESKTOP-NUD4SOC:~/Task4$
+
+![image](https://user-images.githubusercontent.com/28803383/193218834-53ef3bbe-7a0e-4fe8-acc2-09770921072e.png)
+
