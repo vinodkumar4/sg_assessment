@@ -1,4 +1,4 @@
-vkb@DESKTOP-NUD4SOC:~/Task4$ docker image ls
+```vkb@DESKTOP-NUD4SOC:~/Task4$ docker image ls
 REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
 java-docker              latest    f4cc3f46872e   58 minutes ago   559MB
 task4_nginx-service      latest    84b267be9ca8   2 hours ago      23.5MB
@@ -29,7 +29,7 @@ Removing task4_web-app_1       ... done
 Removing task4_app-db_1        ... done
 Removing task4_nginx-service_1 ... done
 Removing network task4_default
-vkb@DESKTOP-NUD4SOC:~/Task4$
+vkb@DESKTOP-NUD4SOC:~/Task4$```
 
 ![image](https://user-images.githubusercontent.com/28803383/193218834-53ef3bbe-7a0e-4fe8-acc2-09770921072e.png)
 
