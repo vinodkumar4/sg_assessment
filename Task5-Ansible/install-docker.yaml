@@ -1,0 +1,88 @@
+
+- hosts: all
+  become: true
+  vars_files:
+    - vars/default.yml
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+    - name: Pull httpd docker image
+      docker_image:
+        name: httpd
+        state: present
+        source: pull
+    - name: Launch httpd docker container
+      docker_container:
+        name: "Dockerwebserver"
+        image: httpd
+        state: started
+        restart: yes
+        exposed_ports: "80"
+        ports: "8880:80"  
+    - name: Pull php docker image
+      docker_image:
+        name: phpmyadmin/phpmyadmin
+        state: present
+        source: pull
+    - name: Launch php docker container
+      docker_container:
+        name: "PHPContainer"
+        image: phpmyadmin/phpmyadmin
+        restart: yes
+        state: started
+        ports: "3333:80"
+        env:
+          MYSQL_ROOT_PASSWORT: "{{ MYSQL_ROOT_PASSWORD }}"
+    - name: Pull mysql docker image
+      docker_image:
+        name: mysql:8
+        state: present
+        source: pull
+    - name: Launch php docker container
+      docker_container:
+        name: "MySQL-DB"
+        image: mysql:8
+        restart: yes
+        state: started
+        ports: "3306:3306"
+        env:
+          MYSQL_ROOT_PASSWORD: "{{ MYSQL_ROOT_PASSWORD }}"
+          MYSQL_DATABASE: "{{ MYSQL_DATABASE }}"
+          MYSQL_USER: "{{ MYSQL_USER }}"
+          MYSQL_PASSWORD: "{{ MYSQL_PASSWORD }}"
