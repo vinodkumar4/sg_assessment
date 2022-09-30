@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  nginx-service:
+    image: vkb_nginx-service
+    environment:
+      - DEVOPS=${DEVOPS:-vinod}
+    ports:
+      - "80:80"
+  web-app:
+    image: java-docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app-db
+  app-db:
+    image: mysql:8.0.28
+    env_file:
+      - ./db.env
+    environment:
+      - MYSQL_DATABASE=application
+      - MYSQL_ROOT_PASSWORD=passWORD
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
